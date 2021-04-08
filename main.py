@@ -10,8 +10,9 @@ ostrich = Client("theostrich",
 @ostrich.on_message(filters.private & (filters.document | filters.video))
 async def cc(client,message):
   msg = await client.send_message(chat_id=message.chat.id, text="Downloading your file yo my server...")
-  download_location = await client.download_media(
+  download_loc = await client.download_media(
         message)
+  await msg.edit_text(download_loc)
 
 serve.keep_alive()
 ostrich.run()
